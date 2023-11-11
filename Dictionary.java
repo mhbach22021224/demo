@@ -1,4 +1,4 @@
-package org.example;
+package com.example.dictionaryyy;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;

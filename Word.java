@@ -1,4 +1,4 @@
-package org.example;
+package com.example.dictionaryyy;
 
 import java.util.LinkedList;
 

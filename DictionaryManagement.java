@@ -1,4 +1,4 @@
-package org.example;
+package com.example.dictionaryyy;
 import java.io.*;
 import java.util.Scanner;
 class DictionaryManagement {

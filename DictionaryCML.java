@@ -1,4 +1,4 @@
-package org.example;
+package com.example.dictionaryyy;
 
 import java.io.IOException;
 import java.util.Scanner;
