@@ -24,11 +24,15 @@ public class Dictionary {
 
 
     // hiển thị tất cả từ trong từ điển
-    public void showAllWords() {
-        System.out.println("No | English | Vietnamese");
+
+    public String showAllWords() {
+        String res = "";
+        res += "No | English | Vietnamese";
+        res += '\n';
         for (int i = 0; i < words.size(); i++) {
-            System.out.println((i + 1) + " | " + words.get(i).getWord_explain() + " | " + words.get(i).getWord_target());
+            res += ((i + 1) + " | " + words.get(i).getWord_explain() + " | " + words.get(i).getWord_target()) + '\n';
         }
+        return res;
     }
     //get words
     public static ArrayList<Word> getWords() {
@@ -36,8 +40,9 @@ public class Dictionary {
     }
     public String getVie(String t) {
         t = t.trim();
+        t = t.toLowerCase();
         for(int i=0; i < words.size() ; i++) {
-            String newstr = words.get(i).getWord_explain().trim();
+            String newstr = words.get(i).getWord_explain().trim().toLowerCase();
             if( newstr.compareTo(t) == 0) {
                 return words.get(i).getWord_target();
             }
@@ -69,32 +74,31 @@ public class Dictionary {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap tu muon cap nhat");
         String word = sc.nextLine();
+        word = word.trim();
         System.out.println("Nhap nghia muon thay doi");
         String newword = sc.nextLine();
         newword = newword.trim();
         for(int i=0; i < words.size() ; i++) {
-            String newstr = words.get(i).getWord_target().trim();
+            String newstr = words.get(i).getWord_explain().trim();
             if( newstr.compareTo(word) == 0) {
                 words.get(i).setWord_target(newword);
             }
         }
     }
 
-    public void suggest() {
-        Scanner sc = new Scanner(System.in);
+    public String hintedWord(String word) {
+        String res = "";
         ArrayList<String> suggestions = new ArrayList<>();
 
-        System.out.println("Tra cuu:");
-        String test = sc.nextLine();
         for(int i = 0; i < words.size(); i++) {
-            String search = words.get(i).getWord_explain().trim();
-            if(search.startsWith(test)) {
-                suggestions.add(search);
+            String search = words.get(i).getWord_target().trim();
+            if(search.startsWith(word)) {
+                suggestions.add(words.get(i).getWord_target().trim() + " : " + words.get(i).getWord_explain().trim());
             }
         }
-
-        for(String s : suggestions) {
-            System.out.println(s);
+        for(int i = 0; i < suggestions.size(); i++) {
+            res += suggestions.get(i);
         }
+        return res;
     }
 }
