@@ -30,7 +30,7 @@ public class Dictionary {
         res += "No | English | Vietnamese";
         res += '\n';
         for (int i = 0; i < words.size(); i++) {
-            res += ((i + 1) + " | " + words.get(i).getWord_explain() + " | " + words.get(i).getWord_target()) + '\n';
+            res += ((i + 1) + " | " + words.get(i).getWord_target() + " | " + words.get(i).getWord_explain()) + '\n';
         }
         return res;
     }
@@ -38,62 +38,69 @@ public class Dictionary {
     public static ArrayList<Word> getWords() {
         return words;
     }
+
+    // Tìm từ
     public String getVie(String t) {
-        t = t.trim();
-        t = t.toLowerCase();
-        for(int i=0; i < words.size() ; i++) {
-            String newstr = words.get(i).getWord_explain().trim().toLowerCase();
-            if( newstr.compareTo(t) == 0) {
-                return words.get(i).getWord_target();
+        for(int i=0; i < words.size(); i++) {
+            String newstr = words.get(i).getWord_target().toLowerCase().trim();
+            if( newstr.compareTo(t.toLowerCase()) == 0) {
+                return words.get(i).getWord_explain();
             }
         }
         return null;
     }
-    public void removeVie() {
+
+    // Xóa từ
+    public void remove(String TuCanXoa) {
         System.out.println("Nhap tu ban muon xoa");
         Scanner sc = new Scanner(System.in);
-        String word = sc.nextLine();
-        word = word.trim();
+        TuCanXoa = sc.nextLine();
+        TuCanXoa = TuCanXoa.trim();
         for(int i=0; i < words.size() ; i++) {
-            String newstr = words.get(i).getWord_explain().trim();
-            if( newstr.compareTo(word) == 0) {
+            String newstr = words.get(i).getWord_target().trim();
+            if( newstr.compareTo(TuCanXoa) == 0) {
                 words.remove(i);
             }
         }
     }
-    public void addEng() {
-        System.out.println("Nhap Tu tieng Anh");
-        Scanner sc = new Scanner(System.in);
-        String Eng = sc.nextLine();
+
+    //Thêm từ
+    public void addWord(String Vie, String Eng) {
         System.out.println("Nhap Tu tieng Viet");
-        String Vie = sc.nextLine();
-        words.add(new Word(Eng,Vie));
+        Scanner sc = new Scanner(System.in);
+        Vie = sc.nextLine();
+        System.out.println("Nhap Tu tieng Anh");
+        Eng = sc.nextLine();
+        words.add(new Word(Vie,Eng));
         System.out.println("success");
     }
-    public void setVie() {
+
+    // Cập nhật từ
+    public void update(String Vie, String engUpdate) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap tu muon cap nhat");
-        String word = sc.nextLine();
-        word = word.trim();
+        Vie = sc.nextLine();
+        Vie = Vie.trim();
         System.out.println("Nhap nghia muon thay doi");
-        String newword = sc.nextLine();
-        newword = newword.trim();
+        engUpdate = sc.nextLine();
+        engUpdate = engUpdate.trim();
         for(int i=0; i < words.size() ; i++) {
-            String newstr = words.get(i).getWord_explain().trim();
-            if( newstr.compareTo(word) == 0) {
-                words.get(i).setWord_target(newword);
+            String newstr = words.get(i).getWord_target().trim();
+            if( newstr.compareTo(Vie) == 0) {
+                words.get(i).setWord_explain(engUpdate);
             }
         }
     }
 
+    //In ra các từ gợi ý
     public String hintedWord(String word) {
         String res = "";
         ArrayList<String> suggestions = new ArrayList<>();
 
         for(int i = 0; i < words.size(); i++) {
-            String search = words.get(i).getWord_target().trim();
-            if(search.startsWith(word)) {
-                suggestions.add(words.get(i).getWord_target().trim() + " : " + words.get(i).getWord_explain().trim());
+            String search = words.get(i).getWord_target().trim().toLowerCase();
+            if(search.startsWith(word.toLowerCase())) {
+                suggestions.add((words.get(i).getWord_target().trim() + " : " + words.get(i).getWord_explain().trim()) + '\n');
             }
         }
         for(int i = 0; i < suggestions.size(); i++) {
