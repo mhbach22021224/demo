@@ -1,0 +1,112 @@
+package com.example.dictionaryyy;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+class Dictionary {
+    public static ArrayList<Word> words;
+
+    // constructor
+    public Dictionary() {
+        this.words = new ArrayList<>();
+    }
+
+    // thêm từ vào từ điển
+    public void addWord(Word word) {
+        words.add(word);
+    }
+
+
+    // hiển thị tất cả từ trong từ điển
+    public void showAllWords() {
+        System.out.println("No | English | Vietnamese");
+        for (int i = 0; i < words.size(); i++) {
+            System.out.println((i + 1) + " | " + words.get(i).getWord_target() + " | " + words.get(i).getWord_explain());
+        }
+    }
+
+    //get words
+    public ArrayList<Word> getWords() {
+        return words;
+    }
+
+    public String getVie(String t) {
+        t = t.trim();
+        t = t.toLowerCase(); // fix
+        for (int i = 0; i < words.size(); i++) {
+            String newstr = words.get(i).getWord_target().trim().toLowerCase(); // String newstr = words.get(i).getWord_target().trim()
+            if (newstr.compareTo(t) == 0) {
+                return words.get(i).getWord_explain();
+            }
+        }
+        return null;
+    }
+
+    public void removeVie(String TuCanXoa) throws IOException {
+        TuCanXoa = TuCanXoa.trim();
+        TuCanXoa = TuCanXoa.toLowerCase();
+        for (int i = 0; i < words.size(); i++) {
+            String newstr = words.get(i).getWord_target().trim().toLowerCase();
+            if (newstr.compareTo(TuCanXoa) == 0) {
+                words.remove(i);
+            }
+        }
+        //*****
+        FileWriter fr = new FileWriter("datatest.txt");
+        for (int i = 0; i < words.size(); i++) {
+            fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
+        }
+        fr.close();
+        //*****
+    }
+
+    public void update(String TV, String Update) throws IOException {
+        String word = TV.trim().toLowerCase();
+        for (int i = 0; i < words.size(); i++) {
+            String newstr = words.get(i).getWord_target().trim().toLowerCase();
+            if (newstr.compareTo(word) == 0) {
+                words.get(i).setWord_explain(Update);
+            }
+        }
+        //*****
+        FileWriter fr = new FileWriter("datatest.txt");
+        for (int i = 0; i < words.size(); i++) {
+            fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
+        }
+        fr.close();
+        //*****
+    }
+
+    public void addVie(String Vie, String Eng) throws IOException {
+
+        words.add(new Word(Vie, Eng));
+        //*****
+        FileWriter fr = new FileWriter("datatest.txt");
+        for (int i = 0; i < words.size(); i++) {
+            fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
+        }
+        fr.close();
+        //*****
+
+    }
+
+    public String hintedWord(String word) {
+        String res = "";
+        ArrayList<String> suggestions = new ArrayList<>();
+
+        for (int i = 0; i < words.size(); i++) {
+            String search = words.get(i).getWord_target().trim().toLowerCase();
+            if (search.startsWith(word.toLowerCase())) {
+                suggestions.add((words.get(i).getWord_target().trim() + " : " + words.get(i).getWord_explain().trim()) + '\n');
+            }
+        }
+        for (int i = 0; i < suggestions.size(); i++) {
+            res += suggestions.get(i);
+        }
+        return res;
+    }
+}
