@@ -1,5 +1,7 @@
 package base;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -51,7 +53,7 @@ public class Dictionary {
     }
 
     // Xóa từ
-    public void remove(String TuCanXoa) {
+    public void remove(String TuCanXoa) throws IOException {
         System.out.println("Nhap tu ban muon xoa");
         Scanner sc = new Scanner(System.in);
         TuCanXoa = sc.nextLine();
@@ -62,10 +64,15 @@ public class Dictionary {
                 words.remove(i);
             }
         }
+
+        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/data.txt");
+        for(int i=0;i< words.size(); i++) {
+            fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
+        }
     }
 
     //Thêm từ
-    public void addWord(String Vie, String Eng) {
+    public void addWord(String Vie, String Eng) throws IOException {
         System.out.println("Nhap Tu tieng Viet");
         Scanner sc = new Scanner(System.in);
         Vie = sc.nextLine();
@@ -73,23 +80,34 @@ public class Dictionary {
         Eng = sc.nextLine();
         words.add(new Word(Vie,Eng));
         System.out.println("success");
+
+        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/data.txt");
+        for(int i=0;i< words.size(); i++) {
+            fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
+        }
     }
 
     // Cập nhật từ
-    public void update(String Vie, String engUpdate) {
+    public void update(String TV, String Update) throws IOException {
+        System.out.println("Nhap tu can chinh");
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nhap tu muon cap nhat");
-        Vie = sc.nextLine();
-        Vie = Vie.trim();
-        System.out.println("Nhap nghia muon thay doi");
-        engUpdate = sc.nextLine();
-        engUpdate = engUpdate.trim();
+        TV = sc.nextLine();
+        System.out.println("Nhap nghia moi");
+        Update = sc.nextLine();
+
+        String word = TV.trim().toLowerCase();
         for(int i=0; i < words.size() ; i++) {
-            String newstr = words.get(i).getWord_target().trim();
-            if( newstr.compareTo(Vie) == 0) {
-                words.get(i).setWord_explain(engUpdate);
+            String newstr = words.get(i).getWord_target().trim().toLowerCase();
+            if( newstr.compareTo(word) == 0) {
+                words.get(i).setWord_explain(Update);
             }
         }
+        //*****
+        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/data.txt");
+        for(int i=0;i< words.size(); i++) {
+            fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
+        }
+        //*****
     }
 
     //In ra các từ gợi ý
