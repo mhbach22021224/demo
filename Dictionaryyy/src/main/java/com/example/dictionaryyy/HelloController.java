@@ -2,6 +2,7 @@ package com.example.dictionaryyy;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -55,7 +56,15 @@ public class HelloController {
     @FXML
     void NhapTuBanPhim(ActionEvent event) {
         String t = Input.getText();
-        Output.setText(dictionary.getVie(t));
+        if(dictionary.getVie(t)!=null){
+            Output.setText(dictionary.getVie(t));
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo!");
+            alert.setContentText("Không tìm thấy nghĩa phù hợp!");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
@@ -66,7 +75,14 @@ public class HelloController {
     @FXML
     void Press1(ActionEvent event) {
         String t = Input.getText();
-        Output.setText(dictionary.getVie(t));
+        if(dictionary.getVie(t)!=null){
+            Output.setText(dictionary.getVie(t));
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo!");
+            alert.setContentText("Không tìm thấy nghĩa phù hợp!");
+            alert.showAndWait();
+        }
     }
 
 
@@ -75,6 +91,10 @@ public class HelloController {
     void Press2(ActionEvent event) throws IOException {
         String t = inRemove.getText();
         dictionary.removeVie(t);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Thông báo!");
+        alert.setContentText("Xoá từ thành công!");
+        alert.showAndWait();
     }
 
     @FXML
@@ -82,17 +102,39 @@ public class HelloController {
         String a1 = add1.getText();
         String a2 = add2.getText();
         dictionary.addVie(a1,a2);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Thông báo!");
+        alert.setContentText("Thêm từ thành công!");
+        alert.showAndWait();
     }
     @FXML
     void Press4(ActionEvent event) throws IOException {
         String u1 = up1.getText();
         String u2 = up2.getText();
-        dictionary.update(u1,u2);
+        if(dictionary.getVie(u1) == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cảnh báo!");
+            alert.setContentText("Không tìm thấy từ cần cập nhật! \n Mời nhập lại");
+            alert.showAndWait();
+        } else {
+            dictionary.update(u1,u2);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo!");
+            alert.setContentText("Cập nhật thành công!");
+            alert.showAndWait();
+        }
     }
     @FXML
     void Press5(ActionEvent event){
         String inLook = inLookup.getText();
-        Output.setText(dictionary.hintedWord(inLook)+"\n");
+        if(dictionary.hintedWord(inLook) != null){
+            Output.setText(dictionary.hintedWord(inLook)+'\n');
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cảnh báo!");
+            alert.setContentText("Không tìm thấy từ nào !");
+            alert.showAndWait();
+        }
     }
     @FXML
     void Voice(ActionEvent event){
