@@ -2,10 +2,7 @@ package base;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Dictionary {
     public static ArrayList<Word> words = new ArrayList<>();
@@ -23,7 +20,21 @@ public class Dictionary {
         words.add(word);
     }
 
+    public void sortDictionary() throws IOException {
 
+        Collections.sort(words, new Comparator<Word>() {
+            @Override
+            public int compare(Word o1, Word o2) {
+                return o1.getWord_target().compareTo(o2.getWord_target());
+            }
+        });
+
+        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/data.txt");
+        for(int i=0;i< words.size(); i++) {
+            fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
+        }
+
+    }
 
     // hiển thị tất cả từ trong từ điển
 
@@ -72,13 +83,13 @@ public class Dictionary {
     }
 
     //Thêm từ
-    public void addWord(String Vie, String Eng) throws IOException {
-        System.out.println("Nhap Tu tieng Viet");
-        Scanner sc = new Scanner(System.in);
-        Vie = sc.nextLine();
+    public void addWord(String Eng, String Vie) throws IOException {
         System.out.println("Nhap Tu tieng Anh");
+        Scanner sc = new Scanner(System.in);
         Eng = sc.nextLine();
-        words.add(new Word(Vie,Eng));
+        System.out.println("Nhap Tu tieng Viet");
+        Vie = sc.nextLine();
+        words.add(new Word(Eng,Vie));
         System.out.println("success");
 
         FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/data.txt");
@@ -88,14 +99,14 @@ public class Dictionary {
     }
 
     // Cập nhật từ
-    public void update(String TV, String Update) throws IOException {
+    public void update(String Eng, String Update) throws IOException {
         System.out.println("Nhap tu can chinh");
         Scanner sc = new Scanner(System.in);
-        TV = sc.nextLine();
+        Eng = sc.nextLine();
         System.out.println("Nhap nghia moi");
         Update = sc.nextLine();
 
-        String word = TV.trim().toLowerCase();
+        String word = Eng.trim().toLowerCase();
         for(int i=0; i < words.size() ; i++) {
             String newstr = words.get(i).getWord_target().trim().toLowerCase();
             if( newstr.compareTo(word) == 0) {
