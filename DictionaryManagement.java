@@ -1,11 +1,11 @@
-package com.example.dictionaryyy;
+package base;
+
 import java.io.*;
 import java.util.Scanner;
-class DictionaryManagement {
-    // nhập liệu từ bàn phím và thêm vào từ điển
-    public void inserFromFile(Dictionary dictionary) throws IOException {
+public class DictionaryManagement {
+    public void insertFromFile(Dictionary dictionary) throws IOException {
 //        Scanner scanner = new Scanner(System.in);
-        FileReader fr = new FileReader("datatest.txt");
+        FileReader fr = new FileReader("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/truedata.txt");
         BufferedReader br = new BufferedReader(fr);
         while (true){
             String word_target = "";
@@ -21,7 +21,7 @@ class DictionaryManagement {
                     continue;
                 }
                 if(checkE == true) {
-                    word_target+=s.charAt(i);
+                    word_target += s.charAt(i);
                 }
                 else {
                     word_explain += s.charAt(i);
@@ -29,8 +29,12 @@ class DictionaryManagement {
             }
             word_target = word_target.trim();
             word_explain = word_explain.trim();
-            Word word = new Word(word_target, word_explain);
-            dictionary.addWord(word);
+            String[] strings = word_target.split(", ");
+            for(String str : strings) {
+                Word w = new Word(str, word_explain);
+                dictionary.addWord(w);
+            }
+
         }
     }
 }
