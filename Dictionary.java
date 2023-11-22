@@ -20,6 +20,27 @@ public class Dictionary {
         words.add(word);
     }
 
+    //Tim kiem tu bang thuat toan
+    public String FindVie(String target) {
+        int left = 0;
+        int right = words.size() - 1;
+        target = target.trim().toLowerCase();
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            String word = words.get(mid).getWord_target().trim().toLowerCase();
+
+            int compareResult = word.compareTo(target);
+            if (compareResult == 0) {
+                return words.get(mid).getWord_explain(); // Trả về chuỗi
+            } else if (compareResult < 0) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return "Không có từ này trong từ điển"; // Trả về -1 nếu không tìm thấy chuỗi
+    }
+
     public void sortDictionary() throws IOException {
 
         Collections.sort(words, new Comparator<Word>() {
@@ -29,7 +50,7 @@ public class Dictionary {
             }
         });
 
-        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/data.txt");
+        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/truedata.txt");
         for(int i=0;i< words.size(); i++) {
             fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
         }
@@ -76,7 +97,7 @@ public class Dictionary {
             }
         }
 
-        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/data.txt");
+        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/truedata.txt");
         for(int i=0;i< words.size(); i++) {
             fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
         }
@@ -92,7 +113,7 @@ public class Dictionary {
         words.add(new Word(Eng,Vie));
         System.out.println("success");
 
-        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/data.txt");
+        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/truedata.txt");
         for(int i=0;i< words.size(); i++) {
             fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
         }
@@ -114,7 +135,7 @@ public class Dictionary {
             }
         }
         //*****
-        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/data.txt");
+        FileWriter fr = new FileWriter("C:/Users/MAI HOANG BACH/IdeaProjects/Dictionary/src/main/resources/base/truedata.txt");
         for(int i=0;i< words.size(); i++) {
             fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
         }
@@ -123,18 +144,24 @@ public class Dictionary {
 
     //In ra các từ gợi ý
     public String hintedWord(String word) {
-        String res = "";
+        if(word.equals("")) {
+            return "Kết quả của bạn...";
+        }
+
+        StringBuilder res = new StringBuilder();
         ArrayList<String> suggestions = new ArrayList<>();
 
-        for(int i = 0; i < words.size(); i++) {
+        for (int i = 0; i < words.size(); i++) {
             String search = words.get(i).getWord_target().trim().toLowerCase();
-            if(search.startsWith(word.toLowerCase())) {
+            if (search.startsWith(word.toLowerCase())) {
                 suggestions.add((words.get(i).getWord_target().trim() + " : " + words.get(i).getWord_explain().trim()) + '\n');
             }
         }
-        for(int i = 0; i < suggestions.size(); i++) {
-            res += suggestions.get(i);
+
+        for (String suggestion : suggestions) {
+            res.append(suggestion);
         }
-        return res;
+
+        return res.toString();
     }
 }

@@ -56,16 +56,16 @@ public class DictionaryCommandline {
             if (choose == 3) {
                 String vie = sc.nextLine();
                 String eng = sc.nextLine();
-                dictionary.addWord(vie,eng);
+                dictionary.addWord(eng,vie);
             }
             if (choose == 4) {
                 String word = sc.nextLine();
                 dictionary.remove(word);
             }
             if (choose == 5) {
-                String vieWord = sc.nextLine();
+                String engWord = sc.nextLine();
                 String definition = sc.nextLine();
-                dictionary.update(vieWord,definition);
+                dictionary.update(engWord,definition);
             }
             if (choose == 6) {
                 System.out.println("Nhap tu:");
