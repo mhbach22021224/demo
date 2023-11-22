@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="748.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryyy.HelloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="748.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryyy.DicController">
    <children>
-      <TextField fx:id="Input" layoutX="17.0" layoutY="41.0" onAction="#NhapTuBanPhim" onKeyTyped="#OnKeyT" prefHeight="30.0" prefWidth="130.0" promptText="Search..." style="-fx-background-color: white;" />
-      <TextField fx:id="Output" alignment="TOP_LEFT" layoutX="302.0" layoutY="223.0" onAction="#SearAPI" prefHeight="302.0" prefWidth="391.0" promptText="Kết quả của bạn..." style="-fx-background-color: white;" />
-      <Button fx:id="but1" layoutX="151.0" layoutY="41.0" mnemonicParsing="false" onAction="#Press1" prefHeight="30.0" prefWidth="98.0" text="Search Word" />
-      <Button fx:id="but2" layoutX="287.0" layoutY="129.0" mnemonicParsing="false" onAction="#Press3" prefHeight="30.0" prefWidth="98.0" text="Add Word" />
-      <Button fx:id="but3" layoutX="151.0" layoutY="84.0" mnemonicParsing="false" onAction="#Press2" prefHeight="30.0" prefWidth="98.0" text="Remove Word" />
-      <TextField fx:id="add1" layoutX="17.0" layoutY="129.0" onAction="#Press3" prefHeight="30.0" prefWidth="130.0" promptText="Tiếng việt..." style="-fx-background-color: white;" />
-      <TextField fx:id="inRemove" layoutX="17.0" layoutY="84.0" onAction="#Press2" onKeyTyped="#OnKeyT" prefHeight="30.0" prefWidth="130.0" promptText="Remove..." style="-fx-background-color: white;" />
-      <TextField fx:id="add2" layoutX="151.0" layoutY="130.0" onAction="#Press3" onKeyTyped="#OnKeyT" prefHeight="30.0" prefWidth="130.0" promptText="Tiếng anh..." style="-fx-background-color: white;" />
-      <TextField layoutX="-1.0" layoutY="405.0" prefHeight="134.0" prefWidth="278.0" style="-fx-background-color: yellow;" />
-      <Text layoutX="17.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tìm kiếm với google dịch" />
+      <TextField fx:id="Input" layoutX="17.0" layoutY="34.0" onAction="#NhapTuBanPhim" onKeyTyped="#OnKeyT" prefHeight="30.0" prefWidth="130.0" promptText="Search..." style="-fx-background-color: white;" />
+      <Button fx:id="but1" layoutX="151.0" layoutY="34.0" mnemonicParsing="false" onAction="#Press1" prefHeight="30.0" prefWidth="98.0" text="Search Word" />
+      <Button fx:id="but2" layoutX="287.0" layoutY="122.0" mnemonicParsing="false" onAction="#Press3" prefHeight="30.0" prefWidth="98.0" text="Add Word" />
+      <Button fx:id="but3" layoutX="151.0" layoutY="77.0" mnemonicParsing="false" onAction="#Press2" prefHeight="30.0" prefWidth="98.0" text="Remove Word" />
+      <TextField fx:id="add1" layoutX="17.0" layoutY="122.0" onAction="#Press3" prefHeight="30.0" prefWidth="130.0" promptText="Tiếng việt..." style="-fx-background-color: white;" />
+      <TextField fx:id="inRemove" layoutX="17.0" layoutY="77.0" onAction="#Press2" onKeyTyped="#OnKeyT" prefHeight="30.0" prefWidth="130.0" promptText="Remove..." style="-fx-background-color: white;" />
+      <TextField fx:id="add2" layoutX="151.0" layoutY="122.0" onAction="#Press3" onKeyTyped="#OnKeyT" prefHeight="30.0" prefWidth="130.0" promptText="Tiếng anh..." style="-fx-background-color: white;" />
+      <TextField layoutX="-1.0" layoutY="391.0" prefHeight="148.0" prefWidth="278.0" style="-fx-background-color: yellow;" />
+      <Text layoutX="15.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tìm kiếm với google dịch" />
       <TextField fx:id="inAPI" layoutX="15.0" layoutY="451.0" onAction="#SearAPI" onKeyTyped="#OnKeyT" prefHeight="30.0" prefWidth="254.0" promptText="Search..." style="-fx-background-color: white;" />
       <Button fx:id="searAPI" layoutX="17.0" layoutY="493.0" mnemonicParsing="false" onAction="#SearAPI" prefHeight="30.0" prefWidth="74.0" text="Search" />
       <Button layoutX="287.0" layoutY="169.0" mnemonicParsing="false" onAction="#Press4" prefHeight="30.0" prefWidth="98.0" text="Update Word" />
       <Button layoutX="101.0" layoutY="493.0" mnemonicParsing="false" onAction="#Voice" prefHeight="30.0" prefWidth="74.0" text="Voice" />
-      <TextField fx:id="up1" layoutX="17.0" layoutY="172.0" onAction="#Press4" prefHeight="26.0" prefWidth="130.0" promptText="Tiếng Việt..." style="-fx-background-color: white;" />
-      <TextField fx:id="up2" layoutX="153.0" layoutY="173.0" onAction="#Press4" onKeyTyped="#OnKeyT" prefHeight="26.0" prefWidth="130.0" promptText="Tiếng Anh..." style="-fx-background-color: white;" />
-      <TextField fx:id="inLookup" layoutX="17.0" layoutY="210.0" onAction="#Press5" onKeyTyped="#OnKeyT" prefHeight="25.0" prefWidth="130.0" promptText="Nhập từ..." />
-      <Button layoutX="153.0" layoutY="210.0" mnemonicParsing="false" onAction="#Press5" prefHeight="25.0" prefWidth="98.0" text="Lookup Word" />
+      <TextField fx:id="up1" layoutX="17.0" layoutY="171.0" onAction="#Press4" prefHeight="26.0" prefWidth="130.0" promptText="Tiếng Việt..." style="-fx-background-color: white;" />
+      <TextField fx:id="up2" layoutX="151.0" layoutY="171.0" onAction="#Press4" onKeyTyped="#OnKeyT" prefHeight="26.0" prefWidth="130.0" promptText="Tiếng Anh..." style="-fx-background-color: white;" />
+      <ImageView fitHeight="55.0" fitWidth="59.0" layoutX="220.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@ggdich.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="403.0" fitWidth="240.0" layoutX="18.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@learnE.jpg" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="Output" layoutX="293.0" layoutY="219.0" prefHeight="274.0" prefWidth="393.0" promptText="Kết quả của bạn.." />
+      <Button layoutX="614.0" layoutY="497.0" mnemonicParsing="false" onAction="#switchToGame" text="Play Game" />
+      <Label alignment="CENTER" layoutX="381.0" layoutY="501.0" prefHeight="17.0" prefWidth="217.0" style="-fx-background-color: white;" text="Time to relax --------&gt;" />
    </children>
 </Pane>

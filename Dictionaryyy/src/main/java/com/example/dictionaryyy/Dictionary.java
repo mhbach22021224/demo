@@ -2,12 +2,9 @@ package com.example.dictionaryyy;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
 
-class Dictionary {
+class Dictionary  {
     public static ArrayList<Word> words;
 
     // constructor
@@ -110,3 +107,5 @@ class Dictionary {
         return res;
     }
 }
+
+

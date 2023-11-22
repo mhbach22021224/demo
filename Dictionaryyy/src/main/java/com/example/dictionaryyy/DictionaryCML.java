@@ -19,38 +19,28 @@ class DictionaryCML {
         dictionaryManagement.inserFromFile(dictionary);
         System.out.println("1.showAllWords");
         System.out.println("2.Findword");
-        System.out.println("3.STOP");
-//        while (true) {
-//            Scanner sc = new Scanner(System.in);
-//            int choose = sc.nextInt();
-//            if( choose == 1) {
-//                dictionary.showAllWords();
-//            }
-//            if (choose == 2) {
-//                while (true) {
-//                    String text = sc.next();
-//                    text = text.trim();
-//                    if(text.compareTo("3") == 0) {
-//                        break;
-//                    }
-//                    System.out.println(dictionary.getVie(text));
-//                }
-////                String text = sc.next();
-////                text = text.trim();
-////                System.out.println(dictionary.getVie(text));
-//
-//            }
-//            if ( choose == 3) {
-//                break;
-//            }
-//        }
-//        dictionary.removeVie("A Dong ");
-//        dictionary.showAllWords();
-//        dictionary.addVie();
-//        dictionary.showAllWords();
-      //  dictionary.update("A Dong","oke");
-        //dictionary.addVie("LoveUET","ghet");
-        dictionary.showAllWords();
+        System.out.println("3.Search");
+        while (true) {
+            Scanner sc = new Scanner(System.in);
+            int choose = sc.nextInt();
+            if( choose == 1) {
+                dictionary.showAllWords();
+            }
+            if (choose == 2) {
+                while (true) {
+                    String text = sc.next();
+                    text = text.trim();
+                    if(text.compareTo("3") == 0) {
+                        break;
+                    }
+                    System.out.println(dictionary.getVie(text));
+                }
+
+            }
+            if ( choose == 3) {
+                System.out.println(dictionary.hintedWord("A"));
+            }
+        }
 
     }
 }
