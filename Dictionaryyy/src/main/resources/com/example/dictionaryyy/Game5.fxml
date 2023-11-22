@@ -21,7 +21,7 @@
       </ImageView>
       <TextField fx:id="inG5" layoutX="220.0" layoutY="264.0" onAction="#Game5" promptText="Your answer.." />
       <Button layoutX="220.0" layoutY="340.0" mnemonicParsing="false" text="Check" />
-      <TextField fx:id="outG5" layoutX="281.0" layoutY="340.0" prefHeight="25.0" prefWidth="91.0" />
+      <TextField fx:id="outG5" layoutX="281.0" layoutY="340.0" prefHeight="25.0" prefWidth="117.0" />
       <Button layoutX="499.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Next" />
    </children>
 </AnchorPane>

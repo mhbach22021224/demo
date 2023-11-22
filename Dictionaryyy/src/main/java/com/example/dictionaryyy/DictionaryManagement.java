@@ -5,7 +5,7 @@ class DictionaryManagement {
     // nhập liệu từ bàn phím và thêm vào từ điển
     public void inserFromFile(Dictionary dictionary) throws IOException {
 //        Scanner scanner = new Scanner(System.in);
-        FileReader fr = new FileReader("datatest.txt");
+        FileReader fr = new FileReader("truedata.txt");
         BufferedReader br = new BufferedReader(fr);
         while (true){
             String word_target = "";

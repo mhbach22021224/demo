@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-class Dictionary  {
+class Dictionary extends DictionaryC {
     public static ArrayList<Word> words;
 
     // constructor
@@ -31,6 +31,8 @@ class Dictionary  {
         return words;
     }
 
+
+    @Override
     public String getVie(String t) {
         t = t.trim();
         t = t.toLowerCase(); // fix
@@ -43,6 +45,7 @@ class Dictionary  {
         return null;
     }
 
+    @Override
     public void removeVie(String TuCanXoa) throws IOException {
         TuCanXoa = TuCanXoa.trim();
         TuCanXoa = TuCanXoa.toLowerCase();
@@ -53,7 +56,7 @@ class Dictionary  {
             }
         }
         //*****
-        FileWriter fr = new FileWriter("datatest.txt");
+        FileWriter fr = new FileWriter("truedata.txt");
         for (int i = 0; i < words.size(); i++) {
             fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
         }
@@ -61,6 +64,7 @@ class Dictionary  {
         //*****
     }
 
+    @Override
     public void update(String TV, String Update) throws IOException {
         String word = TV.trim().toLowerCase();
         for (int i = 0; i < words.size(); i++) {
@@ -70,7 +74,7 @@ class Dictionary  {
             }
         }
         //*****
-        FileWriter fr = new FileWriter("datatest.txt");
+        FileWriter fr = new FileWriter("truedata.txt");
         for (int i = 0; i < words.size(); i++) {
             fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
         }
@@ -78,19 +82,19 @@ class Dictionary  {
         //*****
     }
 
+    @Override
     public void addVie(String Vie, String Eng) throws IOException {
-
         words.add(new Word(Vie, Eng));
         //*****
-        FileWriter fr = new FileWriter("datatest.txt");
+        FileWriter fr = new FileWriter("truedata.txt");
         for (int i = 0; i < words.size(); i++) {
             fr.write(words.get(i).getWord_target() + " : " + words.get(i).getWord_explain() + "\n");
         }
         fr.close();
         //*****
-
     }
 
+    @Override
     public String hintedWord(String word) {
         String res = "";
         ArrayList<String> suggestions = new ArrayList<>();
@@ -105,6 +109,27 @@ class Dictionary  {
             res += suggestions.get(i);
         }
         return res;
+    }
+
+    /** toi uu thuat toan tim kiem. */
+    public String FindVie(String target) {
+        int left = 0;
+        int right = words.size() - 1;
+        target = target.trim().toLowerCase();
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            String word = words.get(mid).getWord_target().trim().toLowerCase();
+
+            int compareResult = word.compareTo(target);
+            if (compareResult == 0) {
+                return words.get(mid).getWord_explain(); // Trả về chuỗi
+            } else if (compareResult < 0) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return "Không có từ này trong từ điển"; // Trả về -1 nếu không tìm thấy chuỗi
     }
 }
 

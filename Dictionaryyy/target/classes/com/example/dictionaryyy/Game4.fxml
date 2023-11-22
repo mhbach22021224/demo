@@ -19,7 +19,7 @@
             <Image url="@duoihinh4_.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="inG4" layoutX="220.0" layoutY="264.0" onAction="#Game3" promptText="Your answer.." />
+      <TextField fx:id="inG4" layoutX="220.0" layoutY="264.0" onAction="#Game4" promptText="Your answer.." />
       <Button layoutX="220.0" layoutY="340.0" mnemonicParsing="false" text="Check" />
       <TextField fx:id="outG4" layoutX="281.0" layoutY="340.0" prefHeight="25.0" prefWidth="119.0" />
       <Button layoutX="499.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToGame5" prefHeight="25.0" prefWidth="52.0" text="Next" />
