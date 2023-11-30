@@ -104,9 +104,6 @@ public class DicController {
     void OnKeyT(KeyEvent event) {
         String t = Input.getText();
         Output.setText(dictionary.hintedWord(t) + '\n');
-        if(t.equals("")){
-            Output.clear();
-        }
     }
 
     @FXML
@@ -117,7 +114,7 @@ public class DicController {
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo!");
-            alert.setContentText("Không tìm thấy nghĩa phù hợp!");
+            alert.setContentText("Không tìm thấy từ phù hợp!");
             alert.showAndWait();
         }
     }

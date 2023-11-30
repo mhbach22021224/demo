@@ -96,7 +96,11 @@ class Dictionary extends DictionaryC {
 
     @Override
     public String hintedWord(String word) {
-        String res = "";
+        if(word.equals("")) {
+            return "Kết quả của bạn...";
+        }
+
+        StringBuilder res = new StringBuilder();
         ArrayList<String> suggestions = new ArrayList<>();
 
         for (int i = 0; i < words.size(); i++) {
@@ -105,10 +109,12 @@ class Dictionary extends DictionaryC {
                 suggestions.add((words.get(i).getWord_target().trim() + " : " + words.get(i).getWord_explain().trim()) + '\n');
             }
         }
-        for (int i = 0; i < suggestions.size(); i++) {
-            res += suggestions.get(i);
+
+        for (String suggestion : suggestions) {
+            res.append(suggestion);
         }
-        return res;
+
+        return res.toString();
     }
 
     /** toi uu thuat toan tim kiem. */

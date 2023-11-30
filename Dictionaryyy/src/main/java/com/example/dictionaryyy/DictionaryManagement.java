@@ -21,7 +21,7 @@ class DictionaryManagement {
                     continue;
                 }
                 if(checkE == true) {
-                    word_target+=s.charAt(i);
+                    word_target += s.charAt(i);
                 }
                 else {
                     word_explain += s.charAt(i);
@@ -29,8 +29,12 @@ class DictionaryManagement {
             }
             word_target = word_target.trim();
             word_explain = word_explain.trim();
-            Word word = new Word(word_target, word_explain);
-            dictionary.addWord(word);
+            String[] strings = word_target.split(", ");
+            for(String str : strings) {
+                Word w = new Word(str, word_explain);
+                dictionary.addWord(w);
+            }
+
         }
     }
 }
